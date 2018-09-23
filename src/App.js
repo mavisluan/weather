@@ -62,7 +62,7 @@ class App extends Component {
         <div className='board'>
          {days.map((day, index) => (
            <div key={index}>
-             <div className='day'>{day}</div>
+             <div className='day'>{day} UTC</div>
              <div>{items.map(item => (
                (item.day === day) && <Item key={item.dt} item={item}/>
              ))}</div>
