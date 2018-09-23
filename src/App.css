@@ -1,0 +1,57 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    margin: 20px
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    border-bottom: 1px solid lightgray;
+    padding: 20px;
+}
+
+.item div {
+    display: flex;
+    align-items: center;
+}
+
+.temp {
+    background-color: gray;
+    border-radius: 10px;
+    color: white;
+    width: 80px;
+    text-align: center;
+    font-size: 14px;
+    margin-right: 30px;
+}
+
+.desc {
+    font-style:italic 
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    color: rgb(95, 92, 92);
+}
+
+.right > div {
+    margin-bottom: 5px;
+}
+
+.bottom span {
+    margin-right: 5px;
+}
+
+.day {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border: 1px solid lightgray;
+    background-color: rgb(245, 245, 245);
+    height: 40px;
+    width: 720px;
+
+}
