@@ -1,7 +1,31 @@
 .App {
     display: flex;
     flex-direction: column;
-    margin: 20px
+    margin: 20px;
+}
+
+.search {
+    margin-left: 200px;
+}
+
+.App input {
+    width: 220px;
+    height: 40px;
+    border: 1px solid #C57136;
+    border-radius: 10px;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.search button {
+    border: 1px solid orangered;
+    background-color: #C57136;
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    margin-left: 10px;
 }
 
 .item {
