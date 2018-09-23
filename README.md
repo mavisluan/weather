@@ -1,5 +1,6 @@
 # Weather Project
-This is a simple weather project, built with ReactJS.
+- This is a simple weather project, built with ReactJS.
+- Users will be able to search weather by city and country name.
 
 
 # App Screenshot
