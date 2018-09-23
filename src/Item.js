@@ -11,7 +11,7 @@ const Item = ({item: {time, weather_desc, weather_icon, temp, wind, clouds, pres
         </div>
         <div className='right'>
         <div className='top'>
-            <span className='temp'>{temp}°C </span>
+            <span className='temp'>{temp}°F </span>
             <span className='desc'>{weather_desc}</span>
         </div>
         <div className='bottom'>

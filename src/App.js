@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
 import { fetchData } from './API'
-import Item from './Item'
+import Board from './Board'
+
 class App extends Component {
   state = {
-    items: []
+    items: [],
+    error: ''
   }
 
   getStateData = (city) => {
     const localData = JSON.parse(localStorage.getItem('localData'))
 
-    if (!localData || localData.city.toLowerCase() !== city.toLowerCase()) {
+  //if the search city is the same as the last search, it will use the local data
+    if (localData && localData.city.toLowerCase() === city.toLowerCase()) {
+      this.setState({ 
+        items: localData.items, 
+        city: localData.city, 
+        country: localData.country
+      })
+    } else {
       fetchData(city)
       .then(data => {
         const city = data.city.name
@@ -18,7 +27,7 @@ class App extends Component {
         const items =  data.list.map( item =>  ({ 
           dt: item.dt,
           day: this.convertDate(item.dt_txt).day,
-          time: this.convertDate(item.dt_txt).time,
+          time: this.convertDate(item.dt_txt).time.slice(0,5),
           temp: item.main.temp,
           pressure: item.main.pressure,
           weather: item.weather[0].main,
@@ -31,14 +40,8 @@ class App extends Component {
         const result = { items, city, country }
         localStorage.setItem('localData', JSON.stringify(result))
         this.setState({ items, city, country})
-      })  
-    } 
-
-    if (localData && localData.city.toLowerCase() === city.toLowerCase()) {
-      console.log('using local data')
-      this.setState({ items: localData.items, city: localData.city, country: localData.country})
-    }
-     
+      }).catch(() => this.setState({ error: 'Sorry, no search result'}))  
+    }   
   }
 
   convertDate = ( string ) => {
@@ -55,26 +58,16 @@ class App extends Component {
     }  
     return ({ day: string.slice(0, 8) + day, time: hour + string.slice(13)})
   }
-  
-  render() {
-    const { items, city, country } = this.state
-    let days = []
-    let lastDay = null
 
-    items.forEach(item => {  
-      if(item.day !== lastDay) {
-        days.push(item.day)
-        lastDay = item.day
-      }
-      return days
-    })
+  render() {
+    const { items, city, country, error } = this.state
 
     return (
       <div className="App">
         <div className='search'>
           <input 
             type='text' 
-            placeholder='Your city name'
+            placeholder='Your city name, country'
             ref={(input) => this.input = input}
           />
           <button onClick={()=> {
@@ -82,17 +75,8 @@ class App extends Component {
             this.input.value=''
             }}>Search</button>
         </div>
-        <div className='board'>
-          {items.length > 0 && <h1>Hourly weather and forecasts in {city}, {country}</h1> }     
-         {days.map((day, index) => (
-           <div key={index}>
-             <div className='day'>{day}</div>
-             <div>{items.map(item => (
-               (item.day === day) && <Item key={item.dt} item={item}/>
-             ))}</div>
-           </div>
-         ))}
-        </div>
+        {error && <div className='error'>{error}</div>}
+        <Board items={items} city={city} country={country}/>
       </div>
     );
   }

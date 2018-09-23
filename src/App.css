@@ -77,5 +77,12 @@
     background-color: rgb(245, 245, 245);
     height: 40px;
     width: 720px;
+}
 
+.error {
+    font-size: 30px;
+    color: darkblue;
+    align-self: center;
+    width: 700px;
+    margin-top: 100px;
 }
