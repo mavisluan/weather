@@ -4,12 +4,12 @@
 - Users will be able to search weather by city and country name.
 
 
-# App Screenshot
+## App Screenshot
 
 <img src='src/screenshot.png' width='600'>
 
 
-# Installation instructions
+## Installation instructions
 
 - git clone https://github.com/mavisluan/weather.git
 - cd weather
